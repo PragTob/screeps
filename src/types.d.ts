@@ -2,10 +2,16 @@
 
 // memory extension samples
 interface CreepMemory {
-  role: string;
-  room: string;
-  working: boolean;
+  role: number;
+  building: boolean;
+  upgrading: boolean;
 }
+
+type MinCreepMap = Record<number, number>
+type RoleNameMap = Record<number, string>
+type RoleToJob = Record<number, (creep: Creep) => void>
+
+
 
 interface Memory {
   uuid: number;
