@@ -11,7 +11,7 @@ export default function run(creep: Creep): void {
         harvestSource(creep);
     }
     else {
-        let structures = creep.room.find(FIND_STRUCTURES, {
+        let structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                     structure.structureType == STRUCTURE_SPAWN ||
@@ -19,23 +19,23 @@ export default function run(creep: Creep): void {
                     structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
             }
         });
-        if(structures.length > 0) {
-            if(creep.transfer(structures[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(structures[0], {visualizePathStyle: {stroke: '#ffffff'}});
+        if(structure) {
+            if(creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(structure, {visualizePathStyle: {stroke: '#ffffff'}});
             }
         }
         else {
             // hack because the type system doesn't let me include it above?
-            let containers = creep.room.find(FIND_STRUCTURES, {
+            let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_CONTAINER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             });
 
-            if(containers.length > 0) {
-                if(creep.transfer(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffffff'}});
+            if(container) {
+                if(creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(container, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             }
             else {
