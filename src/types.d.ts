@@ -5,6 +5,7 @@ interface CreepMemory {
   role: number;
   building: boolean;
   upgrading: boolean;
+  repairing: boolean;
 }
 
 type MinCreepMap = Record<number, number>
