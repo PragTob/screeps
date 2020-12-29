@@ -11,9 +11,9 @@ const ROLE_UPGRADER = 2;
 
 
 const MINIMUM_CREEPS: MinCreepMap = {
-  [ROLE_HARVESTER]: 2,
-  [ROLE_BUILDER]: 1,
-  [ROLE_UPGRADER]: 1
+  [ROLE_HARVESTER]: 3,
+  [ROLE_BUILDER]: 3,
+  [ROLE_UPGRADER]: 3
 }
 
 const ROLE_NAME_MAP: RoleNameMap = {
