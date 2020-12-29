@@ -1,6 +1,12 @@
 import harvestSource from "actions/harvestSource"
 
+import builder from "roles/builder"
+
 export default function run(creep: Creep): void {
+    if (creep.memory.building) {
+        return builder(creep);
+    }
+
     if(creep.store.getFreeCapacity() > 0) {
         harvestSource(creep);
     }
@@ -31,7 +37,11 @@ export default function run(creep: Creep): void {
                 if(creep.transfer(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
-        }
+            }
+            else {
+                // regress to builder behavior
+                builder(creep)
+            }
        }
     }
 }
