@@ -39,6 +39,7 @@ function findStructureToRepair(creep: Creep): Structure | null {
     )
 }
 
+// fully repair the target
 function repair(creep: Creep, structure: Structure): void {
     if(creep.repair(structure) == ERR_NOT_IN_RANGE) {
         creep.moveTo(structure, {visualizePathStyle: {stroke: '#ffffff'}});
