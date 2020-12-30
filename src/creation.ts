@@ -15,14 +15,14 @@ function cleanCreeps(): void {
 }
 
 function buildNewCreeps(minCreeps: MinCreeps, roleNameMap: RoleNameMap): void {
-  let toBuildRole = determineNewRoleToBuild(minCreeps);
-
-  if (toBuildRole) {
-    buildCreepOf(toBuildRole, roleNameMap);
-  }
-
   if (Game.spawns["Spawn1"].spawning) {
     announceNewCreepBeingSpawned(Game.spawns["Spawn1"].spawning.name, roleNameMap);
+  } else {
+    let toBuildRole = determineNewRoleToBuild(minCreeps);
+
+    if (toBuildRole) {
+      buildCreepOf(toBuildRole, roleNameMap);
+    }
   }
 }
 
