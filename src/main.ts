@@ -11,13 +11,13 @@ const ROLE_BUILDER = 1;
 const ROLE_UPGRADER = 2;
 const ROLE_REPAIRER = 3;
 
-
-const MINIMUM_CREEPS: MinCreepMap = {
-  [ROLE_HARVESTER]: 5,
-  [ROLE_BUILDER]: 3,
-  [ROLE_UPGRADER]: 3,
-  [ROLE_REPAIRER]: 3
-}
+// order matters first roles are produced first, make sure to always have harvesters
+const MINIMUM_CREEPS: MinCreeps = [
+  [ROLE_HARVESTER, 5],
+  [ROLE_UPGRADER, 3],
+  [ROLE_REPAIRER, 2],
+  [ROLE_BUILDER, 2]
+]
 
 const ROLE_NAME_MAP: RoleNameMap = {
   [ROLE_HARVESTER]: "Harvester",
