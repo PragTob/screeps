@@ -29,10 +29,11 @@ export default function run(creep: Creep): void {
 const CRITICAL_HIT_DIFF = 1_000;
 
 function findStructureToRepair(creep: Creep): Structure | null {
-    return creep.pos.findClosestByPath(FIND_MY_STRUCTURES,
+    return creep.pos.findClosestByPath(FIND_STRUCTURES,
         {
             filter: (structure) => {
-                return (structure.hitsMax - structure.hits) >= CRITICAL_HIT_DIFF;
+                let missingHits = structure.hitsMax - structure.hits;
+                return missingHits >= CRITICAL_HIT_DIFF;
             }
         }
     )

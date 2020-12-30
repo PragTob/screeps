@@ -13,8 +13,14 @@ export default function run(creep: Creep): void {
 
         if(creep.memory.upgrading) {
             let controller = creep.room.controller;
+
             if(controller) {
-                if(creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
+                // creep got lost
+                if (!controller.my) {
+                    controller = Game.spawns['Spawn1'].room.controller
+                }
+
+                if(controller && creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(controller, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             }
