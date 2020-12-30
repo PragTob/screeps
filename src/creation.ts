@@ -20,6 +20,8 @@ function cleanCreeps(): void {
 function handleIfNoHarvesters(): void {
   if (_.filter(Game.creeps, creep => creep.memory.role == ROLE_HARVESTER).length == 0) {
     Game.notify("NO MORE HARVESTERS WTF WHYYYYYY");
+    console.log("wait why are there no more harvester?");
+    // repurpose existing as harvesters
     // emergencyBuildHarvester()
   }
 }
@@ -30,7 +32,7 @@ function buildNewCreeps(): void {
   } else {
     let toBuildRole = determineNewRoleToBuild();
 
-    if (toBuildRole) {
+    if (toBuildRole != null) {
       buildCreepOf(toBuildRole);
     }
   }
