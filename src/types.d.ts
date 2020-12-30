@@ -1,6 +1,4 @@
-// example declaration file - remove these and add your own custom typings
-
-// Use actual constants...
+// huh maybe gotta declare them as types and then get their values?
 type CreepRole = 0 | 1 | 2 | 3;
 
 // memory extension samples
