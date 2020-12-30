@@ -47,12 +47,18 @@ function determineNewRoleToBuild(): CreepRole | null {
 
 function buildCreepOf(role: CreepRole): void {
   let roleName = ROLE_NAME_MAP[role];
-  console.log(`Building new ${roleName}`);
-  var newName = `${roleName} ${Game.time}`;
+  const buildRecipe = [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
+  const price = spawnCost(buildRecipe);
+  const spawner = Game.spawns["Spawn1"];
 
-  Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], newName, {
-    memory: { role: role, building: false, upgrading: false, repairing: false }
-  });
+  if (price < spawner.room.energyAvailable) {
+    console.log(`Building new ${roleName}`);
+    let newName = `${roleName} ${Game.time}`;
+
+    spawner.spawnCreep(buildRecipe, newName, {
+      memory: { role: role, building: false, upgrading: false, repairing: false }
+    });
+  }
 }
 
 function announceNewCreepBeingSpawned(spawningName: string): void {
@@ -63,4 +69,10 @@ function announceNewCreepBeingSpawned(spawningName: string): void {
     Game.spawns["Spawn1"].pos.y,
     { align: "left", opacity: 0.8 }
   );
+}
+
+function spawnCost(buildRecipe: BodyPartConstant[]): number {
+  return buildRecipe.reduce((sum, partType) => {
+    return sum + BODYPART_COST[partType];
+  }, 0);
 }
