@@ -11,7 +11,7 @@ export default function run(creep: Creep): void {
         harvestSource(creep);
     }
     else {
-        let structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+        let structure = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION ||
                     structure.structureType == STRUCTURE_SPAWN ||
