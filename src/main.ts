@@ -1,10 +1,10 @@
 import { ErrorMapper } from "utils/ErrorMapper";
 
-import creation from 'creation';
-import roleHarvester from 'roles/harvester';
-import roleBuilder from 'roles/builder';
-import roleUpgrader from 'roles/upgrader';
-import roleRepairer from 'roles/repairer'
+import creation from "creation";
+import roleHarvester from "roles/harvester";
+import roleBuilder from "roles/builder";
+import roleUpgrader from "roles/upgrader";
+import roleRepairer from "roles/repairer";
 
 const ROLE_HARVESTER = 0;
 const ROLE_BUILDER = 1;
@@ -17,22 +17,21 @@ const MINIMUM_CREEPS: MinCreeps = [
   [ROLE_UPGRADER, 3],
   [ROLE_REPAIRER, 2],
   [ROLE_BUILDER, 2]
-]
+];
 
 const ROLE_NAME_MAP: RoleNameMap = {
   [ROLE_HARVESTER]: "Harvester",
   [ROLE_BUILDER]: "Builder",
   [ROLE_UPGRADER]: "Upgrader",
   [ROLE_REPAIRER]: "Repairer"
-}
+};
 
 const ROLE_TO_JOB: RoleToJob = {
   [ROLE_HARVESTER]: roleHarvester,
   [ROLE_BUILDER]: roleBuilder,
   [ROLE_UPGRADER]: roleUpgrader,
   [ROLE_REPAIRER]: roleRepairer
-}
-
+};
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
@@ -54,9 +53,9 @@ export const loop = ErrorMapper.wrapLoop(() => {
   //     }
   // }
 
-  for(var name in Game.creeps) {
-      var creep = Game.creeps[name];
+  for (var name in Game.creeps) {
+    var creep = Game.creeps[name];
 
-      ROLE_TO_JOB[creep.memory.role](creep);
+    ROLE_TO_JOB[creep.memory.role](creep);
   }
 });
