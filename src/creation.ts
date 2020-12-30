@@ -18,7 +18,7 @@ function cleanCreeps(): void {
 }
 
 function handleIfNoHarvesters(): void {
-  if (_.filter(Game.creeps, creep => (creep.memory.role = ROLE_HARVESTER)).length == 0) {
+  if (_.filter(Game.creeps, creep => creep.memory.role == ROLE_HARVESTER).length == 0) {
     Game.notify("NO MORE HARVESTERS WTF WHYYYYYY");
     // emergencyBuildHarvester()
   }
