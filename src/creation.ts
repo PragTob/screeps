@@ -42,7 +42,7 @@ function determineNewRoleToBuild(): CreepRole | null {
     return existing.length < minimum;
   });
 
-  return (found && found[0]) || null;
+  return found ? found[0] : null;
 }
 
 function buildCreepOf(role: CreepRole): void {
