@@ -12,7 +12,7 @@ export default function run(minHarvesterMap: MinCreepMap, roleNameMap: RoleNameM
             console.log(`Building new ${roleName}`);
             var newName = `${roleName} ${Game.time}`
 
-            Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
+            Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
                 {memory: {role: role, building: false, upgrading: false, repairing: false}})
         }
     }
