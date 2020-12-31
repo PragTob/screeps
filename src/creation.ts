@@ -1,4 +1,5 @@
 import { MINIMUM_CREEPS, ROLE_HARVESTER, ROLE_NAME_MAP } from "./constants";
+import { spawnCost } from "creation/spawning";
 
 export default function run(): void {
   cleanCreeps();
@@ -71,10 +72,4 @@ function announceNewCreepBeingSpawned(spawningName: string): void {
     Game.spawns["Spawn1"].pos.y,
     { align: "left", opacity: 0.8 }
   );
-}
-
-function spawnCost(buildRecipe: BodyPartConstant[]): number {
-  return buildRecipe.reduce((sum, partType) => {
-    return sum + BODYPART_COST[partType];
-  }, 0);
 }

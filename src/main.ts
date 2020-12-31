@@ -36,9 +36,7 @@ declare namespace NodeJS {
   }
 }
 
-// When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
-// This utility uses source maps to get the line numbers and file names of the original, TS source code
-export const loop = ErrorMapper.wrapLoop(() => {
+function unwrappedLoop() {
   creation();
 
   // var tower = Game.getObjectById('TOWER_ID');
@@ -61,4 +59,10 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
     ROLE_TO_JOB[creep.memory.role](creep);
   }
-});
+}
+
+// When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
+// This utility uses source maps to get the line numbers and file names of the original, TS source code
+const loop = ErrorMapper.wrapLoop(unwrappedLoop);
+
+export { loop, unwrappedLoop };
